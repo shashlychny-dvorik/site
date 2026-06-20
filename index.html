@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шашлычный дворик — Лучший шашлык в Сочи | Адлер</title>
+    <meta name="description" content="Шашлычный дворик в Адлере — сочный шашлык, свежая рыба на мангале, картофель на углях. Готовим на живом огне. Звоните: +7 (988) 402-66-06">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #080604;
+            --bg-card: #120c08;
+            --gold: #d4a054;
+            --gold-bright: #e8b860;
+            --fire: #f0581e;
+            --fire-glow: #f97316;
+            --text-primary: #f0e6d8;
+            --text-secondary: #b8a890;
+            --text-muted: #8a7a65;
+            --border-subtle: rgba(180, 140, 100, 0.15);
+            --border-gold: rgba(212, 160, 84, 0.45);
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 24px 56px rgba(0, 0, 0, 0.8);
+            --radius-sm: 12px;
+            --radius: 20px;
+            --radius-lg: 28px;
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1200px;
+            --nav-height: 72px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
+            padding-top: var(--nav-height);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-gold);
+            border-radius: 3px;
+        }
+
+        /* ============ HEADER ============ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            transition: var(--transition);
+            background: transparent;
+        }
+        .nav.scrolled {
+            background: rgba(8, 6, 4, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            z-index: 1001;
+        }
+        .logo-icon {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 12px rgba(240, 88, 30, 0.6));
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--fire);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--fire);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(240, 88, 30, 0.4);
+        }
+        .nav-phone:hover {
+            background: #ff5d24;
+            transform: translateY(-1px);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 8px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            background: var(--text-primary);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 380px;
+            height: 100vh;
+            background: rgba(6, 4, 2, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            padding: 100px 32px 40px;
+            transition: var(--transition);
+            box-shadow: -4px 0 30px rgba(0, 0, 0, 0.9);
+            border-left: 1px solid var(--border-subtle);
+        }
+        .mobile-menu.open {
+            right: 0;
+        }
+        .mobile-menu a {
+            display: block;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            cursor: pointer;
+        }
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: calc(100vh - var(--nav-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: url('16.jpg') center/cover no-repeat;
+            padding: 20px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        #hero-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 40% at 50% 70%, rgba(240, 88, 30, 0.15) 0%, transparent 70%);
+            z-index: 3;
+            animation: firePulse 3.5s ease-in-out infinite;
+        }
+        @keyframes firePulse {
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            text-align: center;
+            max-width: 800px;
+            animation: fadeUp 1s ease forwards;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.1;
+            text-shadow: 0 4px 40px rgba(200, 140, 60, 0.4);
+            margin-bottom: 14px;
+        }
+        .hero h1 .accent {
+            color: var(--gold-bright);
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.2vw, 1.4rem);
+            color: var(--text-secondary);
+            letter-spacing: 0.03em;
+            margin-bottom: 30px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f0581e, #d04414);
+            color: #fff;
+            box-shadow: 0 8px 28px rgba(240, 88, 30, 0.45);
+            animation: btnGlow 2.5s infinite;
+        }
+        @keyframes btnGlow {
+            0%,
+            100% {
+                box-shadow: 0 8px 28px rgba(240, 88, 30, 0.4), 0 0 0 0 rgba(240, 88, 30, 0.6);
+            }
+            50% {
+                box-shadow: 0 8px 32px rgba(240, 88, 30, 0.6), 0 0 0 14px rgba(240, 88, 30, 0);
+            }
+        }
+        .btn-primary:hover {
+            background: #ff5d24;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-gold);
+        }
+        .btn-outline:hover {
+            background: rgba(212, 160, 84, 0.1);
+            border-color: var(--gold-bright);
+            transform: translateY(-2px);
+        }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            padding: 80px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* ============ EMOTION BLOCK ============ */
+        .emotion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .emotion-image {
+            border-radius: var(--radius-lg);
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, #1a1008, #221808);
+            background-size: cover;
+            background-position: center;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-gold);
+        }
+        .emotion-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+        .emotion-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* ============ HITS GRID ============ */
+        .hits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+        .hit-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+        }
+        .hit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-gold);
+            box-shadow: 0 0 40px rgba(240, 88, 30, 0.25);
+        }
+        .hit-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-size: cover;
+            background-position: center;
+        }
+        .hit-body {
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .hit-body h4 {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .hit-body .hit-price {
+            font-weight: 700;
+            color: var(--gold-bright);
+            font-size: 1.3rem;
+        }
+
+        /* ============ VIDEO GALLERY ============ */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .video-card {
+            position: relative;
+            aspect-ratio: 16/9;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #140c04;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+        .video-card video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-card:hover {
+            border-color: var(--border-gold);
+            box-shadow: 0 0 30px rgba(240, 88, 30, 0.3);
+            transform: scale(1.02);
+        }
+        /* Кружочки полностью убраны — стили не нужны */
+        .play-icon {
+            display: none;
+        }
+
+        /* ============ PHOTO GALLERY ============ */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .photo-card {
+            aspect-ratio: 1/1;
+            border-radius: var(--radius-sm);
+            background-size: cover;
+            background-position: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border-subtle);
+        }
+        .photo-card:hover {
+            transform: scale(1.03);
+            border-color: var(--border-gold);
+        }
+
+        /* ============ MENU OVERLAY ============ */
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 1, 1, 0.97);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .menu-overlay.open {
+            transform: translateX(0);
+        }
+        .menu-overlay-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            flex-shrink: 0;
+        }
+        .menu-overlay-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        .close-overlay-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        .close-overlay-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .menu-overlay-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        .menu-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .filter-btn {
+            padding: 10px 22px;
+            border-radius: 50px;
+            border: 1.5px solid var(--border-subtle);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        .filter-btn.active {
+            background: var(--fire);
+            color: #fff;
+            border-color: var(--fire);
+            box-shadow: 0 4px 14px rgba(240, 88, 30, 0.3);
+        }
+        .menu-search {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 24px;
+            display: block;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1.5px solid var(--border-subtle);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .menu-search::placeholder {
+            color: var(--text-muted);
+        }
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .menu-item:hover {
+            border-color: var(--border-gold);
+        }
+        .menu-item.hidden {
+            display: none;
+        }
+        .menu-item-info {
+            flex: 1;
+        }
+        .menu-item-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .menu-item-comp {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .menu-item-price {
+            font-weight: 700;
+            color: var(--gold-bright);
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        /* ============ REVIEWS ============ */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .review-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--fire);
+        }
+        .review-stars {
+            color: #f0b860;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        .review-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .review-author {
+            font-weight: 600;
+            color: var(--gold-bright);
+            font-size: 0.9rem;
+        }
+
+        /* ============ CONTACTS ============ */
+        .contact-flex {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        .contact-details p {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 2px solid var(--border-subtle);
+            min-height: 300px;
+        }
+
+        /* ============ FINAL CTA ============ */
+        .final-cta {
+            position: relative;
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(ellipse at center, #1a0c04, #040201);
+            overflow: hidden;
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 70%, rgba(240, 88, 30, 0.2), transparent 70%);
+            z-index: 0;
+            animation: firePulse 3s infinite;
+        }
+        .final-content {
+            position: relative;
+            z-index: 1;
+        }
+        .final-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-phone.desktop {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .emotion-grid {
+                grid-template-columns: 1fr;
+            }
+            .emotion-image {
+                aspect-ratio: 1/1;
+            }
+            .contact-flex {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="navbar">
+        <a href="#" class="nav-logo">
+            <span class="logo-icon">🔥</span>
+            Шашлычный дворик
+        </a>
+        <div class="nav-links">
+            <a data-scroll="emotion">Аппетит</a>
+            <a data-scroll="hits">Хиты</a>
+            <a data-scroll="video">Процесс</a>
+            <a class="open-menu-btn">Меню</a>
+            <a data-scroll="atmosphere">Атмосфера</a>
+            <a data-scroll="reviews">Отзывы</a>
+            <a data-scroll="contacts">Контакты</a>
+        </div>
+        <a href="tel:+79884026606" class="nav-phone desktop">📞 Позвонить</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a data-scroll="emotion">Аппетит</a>
+        <a data-scroll="hits">Хиты</a>
+        <a data-scroll="video">Процесс</a>
+        <a class="open-menu-btn">Меню</a>
+        <a data-scroll="atmosphere">Атмосфера</a>
+        <a data-scroll="reviews">Отзывы</a>
+        <a data-scroll="contacts">Контакты</a>
+        <a href="tel:+79884026606">📞 Позвонить</a>
+    </div>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-content">
+                <h1>Шашлычный <span class="accent">дворик</span></h1>
+                <p class="hero-subtitle">Лучший шашлык в Сочи</p>
+                <div class="hero-buttons">
+                    <a href="tel:+79884026606" class="btn btn-primary">📞 ПОЗВОНИТЬ</a>
+                    <button class="btn btn-outline open-menu-btn">Смотреть меню</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- EMOTION -->
+        <section class="section" id="emotion">
+            <div class="emotion-grid">
+                <div>
+                    <h2 style="font-family:'Playfair Display',serif; font-size:2.5rem; margin-bottom:16px;">Шашлык, который хочется попробовать прямо сейчас</h2>
+                    <p style="color:var(--text-secondary); font-size:1.1rem;">Сочное мясо, маринованное вручную, томится над раскалёнными углями. Живой огонь, дым и аромат, который сводит с ума. Каждый кусок — это чистое удовольствие.</p>
+                    <div style="margin-top:20px;">
+                        <a href="tel:+79884026606" class="btn btn-primary">📞 Позвонить</a>
+                    </div>
+                </div>
+                <div class="emotion-image" style="background-image: url('1.jpg');" aria-label="Аппетитный шашлык"></div>
+            </div>
+        </section>
+
+        <!-- HITS -->
+        <section class="section" id="hits">
+            <div class="section-header">
+                <span class="section-label">Хиты меню</span>
+                <h2 class="section-title">То, что гости заказывают чаще всего</h2>
+            </div>
+            <div class="hits-grid">
+                <div class="hit-card">
+                    <div class="hit-img" style="background-image: url('2.jpg');" aria-label="Свинина шея"></div>
+                    <div class="hit-body">
+                        <h4>Свинина шея</h4>
+                        <div class="hit-price">170 ₽ / 100 г</div>
+                    </div>
+                </div>
+                <div class="hit-card">
+                    <div class="hit-img" style="background-image: url('3.jpg');" aria-label="Стейки из сёмги"></div>
+                    <div class="hit-body">
+                        <h4>Стейки из сёмги</h4>
+                        <div class="hit-price">440 ₽ / 100 г</div>
+                    </div>
+                </div>
+                <div class="hit-card">
+                    <div class="hit-img" style="background-image: url('4.jpg');" aria-label="Баранья корейка"></div>
+                    <div class="hit-body">
+                        <h4>Баранья корейка</h4>
+                        <div class="hit-price">460 ₽ / 100 г</div>
+                    </div>
+                </div>
+                <div class="hit-card">
+                    <div class="hit-img" style="background-image: url('5.jpg');" aria-label="Форель"></div>
+                    <div class="hit-body">
+                        <h4>Форель</h4>
+                        <div class="hit-price">700 ₽ / шт</div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-outline open-menu-btn">📖 Полное меню</button>
+            </div>
+        </section>
+
+        <!-- VIDEO PROCESS -->
+        <section class="section" id="video">
+            <div class="section-header">
+                <span class="section-label">Как мы готовим</span>
+                <h2 class="section-title">Живой огонь и мастерство</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card" data-video="1.mp4">
+                    <video muted loop playsinline preload="metadata"></video>
+                </div>
+                <div class="video-card" data-video="2.mp4">
+                    <video muted loop playsinline preload="metadata"></video>
+                </div>
+                <div class="video-card" data-video="3.mp4">
+                    <video muted loop playsinline preload="metadata"></video>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATMOSPHERE (ЕДА) -->
+        <section class="section" id="atmosphere">
+            <div class="section-header">
+                <span class="section-label">Атмосфера</span>
+                <h2 class="section-title">Еда, которая выглядит как искусство</h2>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-card" style="background-image: url('6.jpg');" aria-label="Фото блюда 1"></div>
+                <div class="photo-card" style="background-image: url('7.jpg');" aria-label="Фото блюда 2"></div>
+                <div class="photo-card" style="background-image: url('8.jpg');" aria-label="Фото блюда 3"></div>
+                <div class="photo-card" style="background-image: url('9.jpg');" aria-label="Фото блюда 4"></div>
+                <div class="photo-card" style="background-image: url('10.jpg');" aria-label="Фото блюда 5"></div>
+                <div class="photo-card" style="background-image: url('11.jpg');" aria-label="Фото блюда 6"></div>
+            </div>
+        </section>
+
+        <!-- НОВЫЙ БЛОК: АТМОСФЕРА ЗАВЕДЕНИЯ -->
+        <section class="section" id="venue-atmosphere">
+            <div class="section-header">
+                <span class="section-label">Атмосфера заведения</span>
+                <h2 class="section-title">Уютное место для вашего отдыха</h2>
+                <p class="section-subtitle">Почувствуйте тепло нашего шашлычного дворика</p>
+            </div>
+            <div class="photo-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="photo-card" style="background-image: url('12.jpg'); aspect-ratio: 4/3;" aria-label="Интерьер 1"></div>
+                <div class="photo-card" style="background-image: url('13.jpg'); aspect-ratio: 4/3;" aria-label="Интерьер 2"></div>
+                <div class="photo-card" style="background-image: url('14.jpg'); aspect-ratio: 4/3;" aria-label="Интерьер 3"></div>
+                <div class="photo-card" style="background-image: url('15.jpg'); aspect-ratio: 4/3;" aria-label="Интерьер 4"></div>
+            </div>
+        </section>
+
+        <!-- REVIEWS -->
+        <section class="section" id="reviews">
+            <div class="section-header">
+                <span class="section-label">Отзывы</span>
+                <h2 class="section-title">Что говорят наши гости</h2>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">«Брали шашлык — сочный, вкусный и свежий. Всё горячее, готовят при клиенте. Очень вежливый персонал.»</p>
+                    <div class="review-author">— Анна М.</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">«Суперское место. Шашлык сочный, персонал приветливый. Всё рассказали, показали и вкусно накормили.»</p>
+                    <div class="review-author">— Сергей К.</div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">«Очень классное место. Вкуснейший шашлык, грибочки на гриле и картофель на мангале. Приятная атмосфера.»</p>
+                    <div class="review-author">— Елена В.</div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:30px;">
+                <a href="https://yandex.ru/maps/org/shashlychny_dvorik/160115767853/reviews/?ll=39.905887%2C43.462427&z=16" target="_blank" class="btn btn-outline">⭐ Смотреть отзывы на Яндекс Картах</a>
+            </div>
+        </section>
+
+        <!-- CONTACTS -->
+        <section class="section" id="contacts">
+            <div class="section-header">
+                <span class="section-label">Контакты</span>
+                <h2 class="section-title">Где нас найти</h2>
+            </div>
+            <div class="contact-flex">
+                <div class="contact-details">
+                    <p><span style="font-size:1.4rem;">📍</span> Адлер, переулок Фермерский, 1</p>
+                    <p><span style="font-size:1.4rem;">📞</span> <a href="tel:+79884026606" style="color:var(--text-primary); text-decoration:none;">+7 (988) 402-66-06</a></p>
+                    <p><span style="font-size:1.4rem;">🕐</span> Ежедневно: 11:00 – 23:00</p>
+                    <a href="tel:+79884026606" class="btn btn-primary" style="margin-top:16px;">📞 ПОЗВОНИТЬ СЕЙЧАС</a>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://yandex.ru/map-widget/v1/?text=%D0%90%D0%B4%D0%BB%D0%B5%D1%80%2C%20%D0%BF%D0%B5%D1%80%D0%B5%D1%83%D0%BB%D0%BE%D0%BA%20%D0%A4%D0%B5%D1%80%D0%BC%D0%B5%D1%80%D1%81%D0%BA%D0%B8%D0%B9%2C%201&z=16&ll=39.923%2C43.435&pt=39.923,43.435,pm2rdm" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Карта"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="final-cta">
+            <div class="final-content">
+                <h2>Готовим на живом огне каждый день</h2>
+                <p style="color:var(--text-secondary); margin-bottom:24px;">Сочный шашлык, свежая рыба и любимые блюда гостей ждут вас.</p>
+                <a href="tel:+79884026606" class="btn btn-primary" style="font-size:1.2rem; padding:18px 40px;">📞 Позвонить</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        © 2026 Шашлычный дворик · Адлер, пер. Фермерский, 1 · +7 (988) 402-66-06
+    </footer>
+
+    <!-- Полноэкранное меню (скрыто) -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-overlay-header">
+            <span class="menu-overlay-title">🔥 Полное меню</span>
+            <button class="close-overlay-btn" id="closeMenuBtn">✕</button>
+        </div>
+        <div class="menu-overlay-content">
+            <div class="menu-controls" id="filterContainer">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="Мангал">🥩 Мангал</button>
+                <button class="filter-btn" data-filter="Салаты">🥗 Салаты</button>
+                <button class="filter-btn" data-filter="Закуски">🍟 Закуски</button>
+                <button class="filter-btn" data-filter="Соусы">🧂 Соусы</button>
+                <button class="filter-btn" data-filter="Напитки">🥤 Напитки</button>
+            </div>
+            <input type="text" class="menu-search" id="menuSearch" placeholder="🔍 Поиск по меню...">
+            <div class="menu-list" id="menuList"></div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Canvas fire particles
+            const canvas = document.getElementById('hero-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let w, h;
+                let particles = [];
+                const max = 70;
+
+                function resize() {
+                    w = canvas.width = canvas.parentElement.offsetWidth;
+                    h = canvas.height = canvas.parentElement.offsetHeight;
+                }
+                class Ember {
+                    constructor() {
+                        this.init(true);
+                    }
+                    init(randomY = false) {
+                        this.x = Math.random() * w;
+                        this.y = randomY ? Math.random() * h : h + 20;
+                        this.r = Math.random() * 2.2 + 0.6;
+                        this.vx = (Math.random() - 0.5) * 0.6;
+                        this.vy = -(Math.random() * 1.2 + 0.4);
+                        this.opacity = Math.random() * 0.7 + 0.3;
+                        this.life = Math.random() * 200 + 120;
+                        this.age = randomY ? Math.random() * this.life : 0;
+                    }
+                    update() {
+                        this.age++;
+                        this.x += this.vx + Math.sin(this.age * 0.02) * 0.3;
+                        this.y += this.vy;
+                        this.opacity -= 0.002;
+                        if (this.age > this.life || this.y < -30 || this.opacity <= 0.02) {
+                            this.init(false);
+                        }
+                    }
+                    draw() {
+                        const alpha = this.opacity * (1 - this.age / this.life);
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 110, 30, ${alpha})`;
+                        ctx.fill();
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.r * 2.5, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 80, 10, ${alpha * 0.2})`;
+                        ctx.fill();
+                    }
+                }
+                function initParticles() {
+                    particles = [];
+                    for (let i = 0; i < max; i++) particles.push(new Ember());
+                }
+                function animate() {
+                    ctx.clearRect(0, 0, w, h);
+                    particles.forEach(p => { p.update(); p.draw(); });
+                    requestAnimationFrame(animate);
+                }
+                window.addEventListener('resize', () => { resize(); initParticles(); });
+                resize();
+                initParticles();
+                animate();
+            }
+
+            // Menu data and filtering
+            const menuItems = [
+                { name: 'Свинина шея', comp: 'Сочная, нежная', cat: 'Мангал', price: '170 ₽ / 100 г' },
+                { name: 'Люля-кебаб', comp: 'Рубленое мясо', cat: 'Мангал', price: '160 ₽ / 100 г' },
+                { name: 'Курица', comp: 'Маринованная', cat: 'Мангал', price: '150 ₽ / 100 г' },
+                { name: 'Рёбра свиные', comp: 'В фирменном маринаде', cat: 'Мангал', price: '170 ₽ / 100 г' },
+                { name: 'Баранья корейка', comp: 'На кости', cat: 'Мангал', price: '460 ₽ / 100 г' },
+                { name: 'Форель', comp: 'Цельная', cat: 'Мангал', price: '700 ₽ / шт' },
+                { name: 'Сёмга стейк', comp: 'На углях', cat: 'Мангал', price: '440 ₽ / 100 г' },
+                { name: 'Овощи', comp: 'Ассорти', cat: 'Мангал', price: '120 ₽ / 100 г' },
+                { name: 'Грибы', comp: 'Шампиньоны', cat: 'Мангал', price: '120 ₽ / 100 г' },
+                { name: 'Картофель', comp: 'На шампурах', cat: 'Мангал', price: '70 ₽ / 100 г' },
+                { name: 'Овощной летний', comp: '', cat: 'Салаты', price: '350 ₽' },
+                { name: 'Цезарь', comp: 'С курицей', cat: 'Салаты', price: '450 ₽' },
+                { name: 'Сырное ассорти', comp: '', cat: 'Закуски', price: '450 ₽' },
+                { name: 'Овощная нарезка', comp: '', cat: 'Закуски', price: '350 ₽' },
+                { name: 'Картофель фри', comp: '', cat: 'Закуски', price: '150 ₽' },
+                { name: 'Наггетсы', comp: '', cat: 'Закуски', price: '300 ₽' },
+                { name: 'Белый соус', comp: 'Чесночный', cat: 'Соусы', price: '100 ₽' },
+                { name: 'Красный соус', comp: 'Томатный', cat: 'Соусы', price: '100 ₽' },
+                { name: 'Пиво Сочинское', comp: '0.5 л', cat: 'Напитки', price: '150 ₽' },
+                { name: 'Пиво Сухумское', comp: '0.5 л', cat: 'Напитки', price: '150 ₽' },
+                { name: 'Лимонад Дюшес', comp: '0.5 л', cat: 'Напитки', price: '150 ₽' },
+                { name: 'Мохито', comp: '0.5 л', cat: 'Напитки', price: '150 ₽' },
+            ];
+
+            const menuList = document.getElementById('menuList');
+            const searchInput = document.getElementById('menuSearch');
+            const filterBtns = document.querySelectorAll('#filterContainer .filter-btn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            let activeFilter = 'all';
+
+            function renderMenu() {
+                const term = searchInput.value.toLowerCase();
+                const filtered = menuItems.filter(item => {
+                    const catMatch = activeFilter === 'all' || item.cat === activeFilter;
+                    const searchMatch = item.name.toLowerCase().includes(term) || (item.comp && item.comp.toLowerCase().includes(term));
+                    return catMatch && searchMatch;
+                });
+                menuList.innerHTML = filtered.map(item => `
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <div class="menu-item-name">${item.name}</div>
+                            ${item.comp ? `<div class="menu-item-comp">${item.comp}</div>` : ''}
+                        </div>
+                        <div class="menu-item-price">${item.price}</div>
+                    </div>
+                `).join('');
+            }
+
+            function openMenu() {
+                menuOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                renderMenu();
+            }
+
+            function closeMenu() {
+                menuOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeFilter = btn.dataset.filter;
+                    renderMenu();
+                });
+            });
+            searchInput.addEventListener('input', renderMenu);
+            closeMenuBtn.addEventListener('click', closeMenu);
+            menuOverlay.addEventListener('click', (e) => {
+                if (e.target === menuOverlay) closeMenu();
+            });
+
+            document.querySelectorAll('.open-menu-btn').forEach(btn => {
+                btn.addEventListener('click', openMenu);
+            });
+
+            document.querySelectorAll('[data-scroll]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('data-scroll');
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        if (mobileMenu.classList.contains('open')) {
+                            hamburger.classList.remove('active');
+                            mobileMenu.classList.remove('open');
+                            mobileOverlay.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+                mobileOverlay.classList.toggle('active');
+            });
+            mobileOverlay.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                mobileOverlay.classList.remove('active');
+            });
+            document.querySelectorAll('.mobile-menu a:not(.open-menu-btn)').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                    mobileOverlay.classList.remove('active');
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+            });
+
+            // Lazy load video
+            const videoCards = document.querySelectorAll('.video-card');
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const video = card.querySelector('video');
+                        const src = card.dataset.video;
+                        if (!video.src && src) {
+                            video.src = src;
+                            video.play().catch(() => {});
+                        }
+                        videoObserver.unobserve(card);
+                    }
+                });
+            }, { rootMargin: '200px' });
+
+            videoCards.forEach(card => {
+                videoObserver.observe(card);
+            });
+        })();
+    </script>
+</body>
+</html>
