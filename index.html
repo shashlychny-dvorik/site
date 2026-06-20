@@ -1156,25 +1156,15 @@
                 document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
             });
 
-            // Lazy load video
+            // Загрузка видео без ленивой подгрузки — все сразу
             const videoCards = document.querySelectorAll('.video-card');
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const card = entry.target;
-                        const video = card.querySelector('video');
-                        const src = card.dataset.video;
-                        if (!video.src && src) {
-                            video.src = src;
-                            video.play().catch(() => {});
-                        }
-                        videoObserver.unobserve(card);
-                    }
-                });
-            }, { rootMargin: '200px' });
-
             videoCards.forEach(card => {
-                videoObserver.observe(card);
+                const video = card.querySelector('video');
+                const src = card.dataset.video;
+                if (video && src) {
+                    video.src = src;
+                    video.play().catch(() => {});
+                }
             });
         })();
     </script>
