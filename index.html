@@ -893,7 +893,7 @@
             </div>
         </section>
 
-        <!-- VIDEO PROCESS (главные видео 1 и 2) -->
+        <!-- VIDEO PROCESS (главные видео 1 и 2 с autoplay) -->
         <section class="section" id="video">
             <div class="section-header">
                 <span class="section-label">Как мы готовим</span>
@@ -901,10 +901,10 @@
             </div>
             <div class="video-grid">
                 <div class="video-card" data-video="1.mp4">
-                    <video muted loop playsinline preload="metadata"></video>
+                    <video muted loop playsinline autoplay preload="metadata"></video>
                 </div>
                 <div class="video-card" data-video="2.mp4">
-                    <video muted loop playsinline preload="metadata"></video>
+                    <video muted loop playsinline autoplay preload="metadata"></video>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 30px;">
@@ -1237,13 +1237,14 @@
                 document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
             });
 
-            // Главные видео
+            // Главные видео с autoplay
             const mainVideoCards = document.querySelectorAll('#video .video-card');
             mainVideoCards.forEach(card => {
                 const video = card.querySelector('video');
                 const src = card.dataset.video;
                 if (video && src) {
                     video.src = src;
+                    // play() может и не сработать, но autoplay уже в теге
                     video.play().catch(() => {});
                 }
             });
