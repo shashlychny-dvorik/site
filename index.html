@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="yandex-verification" content="39a9099db226b29c" />
-    
-    <title>Шашлычный дворик — шашлык, форель и блюда на мангале в Адлере</title>
-    <meta name="description" content="Шашлычный дворик в Адлере. Шашлык из свинины, свежая рыба на мангале, картофель на углях. Готовим на живом огне. Звоните: +7 (988) 402-66-06">
+    <title>Шашлычный дворик — Лучший шашлык в Сочи | Адлер</title>
+    <meta name="description" content="Шашлычный дворик в Адлере — сочный шашлык, свежая рыба на мангале, картофель на углях. Готовим на живом огне. Звоните: +7 (988) 402-66-06">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -479,7 +476,6 @@
             box-shadow: 0 0 30px rgba(240, 88, 30, 0.3);
             transform: scale(1.02);
         }
-        /* Кружочки полностью убраны — стили не нужны */
         .play-icon {
             display: none;
         }
@@ -721,24 +717,58 @@
             font-size: 0.8rem;
         }
 
-        /* ============ REVIEW BUTTONS ============ */
-        .review-buttons {
+        /* ============ GALLERY MODAL ============ */
+        .gallery-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 1, 1, 0.97);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            z-index: 3000;
             display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-top: 30px;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
-        @media (max-width: 600px) {
-            .review-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .review-buttons .btn {
-                width: 100%;
-                max-width: 320px;
-                justify-content: center;
-            }
+        .gallery-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .gallery-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-subtle);
+            flex-shrink: 0;
+        }
+        .gallery-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        .gallery-modal-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .gallery-item {
+            aspect-ratio: 1/1;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+        .gallery-item:hover {
+            border-color: var(--border-gold);
+            transform: scale(1.02);
         }
 
         @media (max-width: 768px) {
@@ -863,7 +893,7 @@
             </div>
         </section>
 
-        <!-- VIDEO PROCESS -->
+        <!-- VIDEO PROCESS (главные видео 1 и 2) -->
         <section class="section" id="video">
             <div class="section-header">
                 <span class="section-label">Как мы готовим</span>
@@ -876,29 +906,33 @@
                 <div class="video-card" data-video="2.mp4">
                     <video muted loop playsinline preload="metadata"></video>
                 </div>
-                <div class="video-card" data-video="3.mp4">
-                    <video muted loop playsinline preload="metadata"></video>
-                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-outline" id="openVideoGalleryBtn">🎥 Смотреть все видео</button>
             </div>
         </section>
 
-        <!-- ATMOSPHERE (ЕДА) -->
+        <!-- ATMOSPHERE (7 главных фото) -->
         <section class="section" id="atmosphere">
             <div class="section-header">
                 <span class="section-label">Атмосфера</span>
                 <h2 class="section-title">Еда, которая выглядит как искусство</h2>
             </div>
             <div class="photo-grid">
-                <div class="photo-card" style="background-image: url('6.jpg');" aria-label="Фото блюда 1"></div>
-                <div class="photo-card" style="background-image: url('7.jpg');" aria-label="Фото блюда 2"></div>
-                <div class="photo-card" style="background-image: url('8.jpg');" aria-label="Фото блюда 3"></div>
-                <div class="photo-card" style="background-image: url('9.jpg');" aria-label="Фото блюда 4"></div>
-                <div class="photo-card" style="background-image: url('10.jpg');" aria-label="Фото блюда 5"></div>
-                <div class="photo-card" style="background-image: url('11.jpg');" aria-label="Фото блюда 6"></div>
+                <div class="photo-card" style="background-image: url('7.jpg');" aria-label="Фото блюда 1"></div>
+                <div class="photo-card" style="background-image: url('8.jpg');" aria-label="Фото блюда 2"></div>
+                <div class="photo-card" style="background-image: url('9.jpg');" aria-label="Фото блюда 3"></div>
+                <div class="photo-card" style="background-image: url('10.jpg');" aria-label="Фото блюда 4"></div>
+                <div class="photo-card" style="background-image: url('11.jpg');" aria-label="Фото блюда 5"></div>
+                <div class="photo-card" style="background-image: url('16.jpg');" aria-label="Фото блюда 6"></div>
+                <div class="photo-card" style="background-image: url('17.jpg');" aria-label="Фото блюда 7"></div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-outline" id="openPhotoGalleryBtn">🖼️ Смотреть все фото</button>
             </div>
         </section>
 
-        <!-- НОВЫЙ БЛОК: АТМОСФЕРА ЗАВЕДЕНИЯ -->
+        <!-- АТМОСФЕРА ЗАВЕДЕНИЯ (Уютное место) -->
         <section class="section" id="venue-atmosphere">
             <div class="section-header">
                 <span class="section-label">Атмосфера заведения</span>
@@ -936,11 +970,9 @@
                     <div class="review-author">— Елена В.</div>
                 </div>
             </div>
-            <!-- Новый блок с текстом и двумя кнопками отзывов -->
             <p style="text-align:center; color: var(--text-secondary); margin-top: 30px; margin-bottom: 20px; font-size: 0.95rem;">Посмотрите больше отзывов наших гостей на популярных картах и справочниках.</p>
-            <div class="review-buttons">
+            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 10px;">
                 <a href="https://yandex.ru/maps/org/shashlychny_dvorik/160115767853/reviews/?ll=39.905887%2C43.462427&z=16" target="_blank" class="btn btn-outline">⭐ Читать отзывы в Яндекс Картах</a>
-                <!-- Временная ссылка для 2ГИС, заменить при необходимости -->
                 <a href="https://2gis.ru/sochi/firm/70000001090190686/tab/reviews" target="_blank" class="btn btn-outline">📍 Читать отзывы в 2ГИС</a>
             </div>
         </section>
@@ -995,6 +1027,28 @@
             </div>
             <input type="text" class="menu-search" id="menuSearch" placeholder="🔍 Поиск по меню...">
             <div class="menu-list" id="menuList"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Галерея фото (16-27.jpg) -->
+    <div class="gallery-modal" id="photoGalleryModal">
+        <div class="gallery-modal-header">
+            <span class="gallery-modal-title">🖼️ Все фото</span>
+            <button class="close-overlay-btn" id="closePhotoGalleryBtn">✕</button>
+        </div>
+        <div class="gallery-modal-content">
+            <div class="gallery-grid" id="photoGalleryGrid"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Галерея видео (3,4,5.mp4) -->
+    <div class="gallery-modal" id="videoGalleryModal">
+        <div class="gallery-modal-header">
+            <span class="gallery-modal-title">🎥 Все видео</span>
+            <button class="close-overlay-btn" id="closeVideoGalleryBtn">✕</button>
+        </div>
+        <div class="gallery-modal-content">
+            <div class="video-grid" id="videoGalleryGrid"></div>
         </div>
     </div>
 
@@ -1062,7 +1116,7 @@
                 animate();
             }
 
-            // Menu data and filtering
+            // Меню
             const menuItems = [
                 { name: 'Свинина шея', comp: 'Сочная, нежная', cat: 'Мангал', price: '170 ₽ / 100 г' },
                 { name: 'Люля-кебаб', comp: 'Рубленое мясо', cat: 'Мангал', price: '160 ₽ / 100 г' },
@@ -1183,9 +1237,9 @@
                 document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
             });
 
-            // Загрузка видео без ленивой подгрузки — все сразу
-            const videoCards = document.querySelectorAll('.video-card');
-            videoCards.forEach(card => {
+            // Главные видео
+            const mainVideoCards = document.querySelectorAll('#video .video-card');
+            mainVideoCards.forEach(card => {
                 const video = card.querySelector('video');
                 const src = card.dataset.video;
                 if (video && src) {
@@ -1193,6 +1247,97 @@
                     video.play().catch(() => {});
                 }
             });
+
+            // ========== ГАЛЕРЕЯ ФОТО ==========
+            const allPhotos = [
+                '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg',
+                '21.jpg', '22.jpg', '23.jpg', '24.jpg', '25.jpg',
+                '26.jpg', '27.jpg'
+            ];
+            const photoGalleryGrid = document.getElementById('photoGalleryGrid');
+            const photoGalleryModal = document.getElementById('photoGalleryModal');
+            const openPhotoBtn = document.getElementById('openPhotoGalleryBtn');
+            const closePhotoBtn = document.getElementById('closePhotoGalleryBtn');
+
+            function buildPhotoGallery() {
+                if (!photoGalleryGrid) return;
+                photoGalleryGrid.innerHTML = allPhotos.map(photo => `
+                    <div class="gallery-item" style="background-image: url('${photo}');" aria-label="Фото"></div>
+                `).join('');
+            }
+
+            if (openPhotoBtn) {
+                openPhotoBtn.addEventListener('click', () => {
+                    if (photoGalleryGrid.children.length === 0) buildPhotoGallery();
+                    photoGalleryModal.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            if (closePhotoBtn) {
+                closePhotoBtn.addEventListener('click', () => {
+                    photoGalleryModal.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            if (photoGalleryModal) {
+                photoGalleryModal.addEventListener('click', (e) => {
+                    if (e.target === photoGalleryModal) {
+                        photoGalleryModal.classList.remove('open');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
+            // ========== ГАЛЕРЕЯ ВИДЕО ==========
+            const allVideos = ['3.mp4', '4.mp4', '5.mp4'];
+            const videoGalleryGrid = document.getElementById('videoGalleryGrid');
+            const videoGalleryModal = document.getElementById('videoGalleryModal');
+            const openVideoBtn = document.getElementById('openVideoGalleryBtn');
+            const closeVideoBtn = document.getElementById('closeVideoGalleryBtn');
+
+            function buildVideoGallery() {
+                if (!videoGalleryGrid) return;
+                videoGalleryGrid.innerHTML = allVideos.map(video => `
+                    <div class="video-card" data-video="${video}">
+                        <video muted loop playsinline preload="none"></video>
+                    </div>
+                `).join('');
+                videoGalleryGrid.querySelectorAll('.video-card').forEach(card => {
+                    const vid = card.querySelector('video');
+                    const src = card.dataset.video;
+                    if (vid && src) {
+                        vid.src = src;
+                        vid.play().catch(() => {});
+                    }
+                });
+            }
+
+            if (openVideoBtn) {
+                openVideoBtn.addEventListener('click', () => {
+                    if (videoGalleryGrid.children.length === 0) buildVideoGallery();
+                    videoGalleryModal.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            if (closeVideoBtn) {
+                closeVideoBtn.addEventListener('click', () => {
+                    videoGalleryModal.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            if (videoGalleryModal) {
+                videoGalleryModal.addEventListener('click', (e) => {
+                    if (e.target === videoGalleryModal) {
+                        videoGalleryModal.classList.remove('open');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+
         })();
     </script>
 </body>
